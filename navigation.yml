@@ -1,0 +1,19 @@
+1:
+  "message": "'Главное меню'"
+  "static_buttons":
+    "Добавить дисциплину": 
+      "new_state": 11
+    "На проверку": 
+      "new_state": 12
+
+11:
+  "message": "'Введите название дисциплины'"
+  "static_buttons":
+    "⬅": 
+      "new_state": 1
+
+12:
+  "message": "'Отправьте файл'"
+  "static_buttons":
+    "⬅": 
+      "new_state": 1
