@@ -1,5 +1,5 @@
 from django.db.models import Model as M
-from django.db.models import PositiveIntegerField, TextField
+from django.db.models import PositiveIntegerField, TextField, BooleanField
 
 class TelegramUser(M):
     external_id = PositiveIntegerField(
@@ -8,6 +8,11 @@ class TelegramUser(M):
 
     name = TextField(
         verbose_name="Имя"
+    )
+
+    is_admin = BooleanField(
+        default=False,
+        verbose_name="Администратор"
     )
 
     class Meta:
