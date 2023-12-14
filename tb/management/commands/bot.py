@@ -4,6 +4,8 @@ from . import navigation as nav
 from aiogram import Bot, Dispatcher, executor
 from aiogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 from django.core.management.base import BaseCommand
+from tb.models import TelegramUser as TUser
+from asgiref.sync import sync_to_async
 
 
 
@@ -37,6 +39,11 @@ class Command(BaseCommand):
                 text=text,
                 reply_markup=reply_markup)
         
-        executor.start_polling(dispatcher=dp)
+
+        async def send_admin(dp):
+            admin = await sync_to_async(TUser.objects.get)(is_admin=True)
+            await bot.send_message(admin.external_id, "Бот запущен!")
+
+        executor.start_polling(dispatcher=dp, on_startup=send_admin)
 
     
